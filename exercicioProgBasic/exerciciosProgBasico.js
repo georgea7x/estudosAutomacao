@@ -1,13 +1,34 @@
+require('dotenv/config');
+
+
+/* Exercício 1 - função que ao ser executada no terminal mostre a frase : 
+"Hello World"*/
 function exer1(){
 
     console.log("Hello World");
     }
 
+/* Exercício 2 -  Função que ao ser executada no terminal enviando a variavel de ambiente $MY_NAME_IS mostre a frase : 
+- "Hello $MY_NAME_IS, how are you?". 
+- Do contrario a frase : "Hello World! Who's there?"*/
 function exer2(){
 
-    window.alert("Não Implantado")
+var name = process.env.MY_NAME_IS;
+
+if (name == ""){
+
+   console.log(`Hello World! Who's there?`)
+
+}else{
+
+    console.log(`Hello ${name}, how are you?`)
+
 }
 
+
+}
+
+//Exercício 3 - Função que ao ser executada no terminal que lê dois números inteiros distintos e diz qual desses dois números é o maior.
 function exer3(){
 
 var num1 = prompt(`Digite um número`);
@@ -28,6 +49,7 @@ console.log(`O Segundo número (${num2}) é maior que o primeiro (${num1})`)
 }
 }
 
+//Exercício 4 - Função que ao ser executada no terminal leia três números distintos e mostra o maior dos 3.
 function exer4(){
 
     var num1 = prompt(`Digite o primeiro número`);    
@@ -68,6 +90,7 @@ if(num2 == num1 && num2 > num3) {
     console.log(`Todos os números são iguais`)
 }
 
+//Exercício 5 - função que ao ser executada no terminal leia um valor e escrever a frase "É  MAIOR  QUE  10!" se o valor lido for maior que 10, caso contrário escrever "NÃO É MAIOR QUE 10!" 
 function exer5(){
 
     var num1 = prompt(`Digite um número`);
@@ -87,6 +110,7 @@ function exer5(){
     }
     }
 
+//Exercício 6 - Função que ao ser executada no terminal ao ler um valor e escrever se é positivo ou negativo (considere o valor zero como positivo.  
 function exer6(){
 
         var num1 = prompt(`Digite um número`);
@@ -102,6 +126,7 @@ function exer6(){
         }
         }
 
+//Exercício 7 - Função que ao ser executada no terminal ao ler um valor e escrever se é positivo, negativo ou zero.
 function exer7(){
 
             var num1 = prompt(`Digite um número`);
@@ -120,18 +145,25 @@ function exer7(){
 
                 }
             
-            }
-            function exer8(){
+}
 
-                var anos = parseInt(prompt(`Quantos anos você tem?`));
-                var meses = parseInt(prompt(`Quantos meses além dos ${anos} anos?`));
-                var dias = parseInt(prompt(`Quantos dias além dos ${anos} anos e ${meses} meses?`));
-                
-                dias = (dias+(anos*365)+(meses*30));
+/*Exercício 8 - Função que ao ser executada no terminal que leia a idade de uma pessoa expressa em anos, meses e dias e escreva a idade dessa pessoa expressa apenas em dias. 
+Considerar variaveis de retorno como : 
+- Ano com 365 dias
+- Mês com 30 dias. */
+function exer8(){
 
-                console.log(`Contando todos os dados, você nasceu há ${dias} dias`);
+    var anos = parseInt(prompt(`Quantos anos você tem?`));
+    var meses = parseInt(prompt(`Quantos meses além dos ${anos} anos?`));
+    var dias = parseInt(prompt(`Quantos dias além dos ${anos} anos e ${meses} meses?`));
+              
+    dias = (dias+(anos*365)+(meses*30));
 
-                }           
+    console.log(`Contando todos os dados, você nasceu há ${dias} dias`);
+
+}           
+
+//Exercício 9 - Função que ao ser executada no terminal  para  imprimir  os  números  de  1  (inclusive)  a  10  (inclusive)  em  ordem crescente.
 function exer9(){
 
     var num1 = 1;
@@ -145,6 +177,7 @@ num1++;
 
 }
 
+//Exercício 10 - Função que ao ser executada no terminal para  imprimir  os  números  de  1  (inclusive)  a  10  (inclusive)  em  ordem decrescente.
 function exer10(){
 
     var num1 = 10;
@@ -158,6 +191,7 @@ num1--;
 
 }
 
+//Exercício 11 - Função que ao ser executada no terminal para imprimir os 10 primeiros números inteiros maiores que 100.
 function exer11(){
 
     var num1 = 100;
@@ -173,6 +207,7 @@ function exer11(){
 
 }
 
+//Exercício 12 - Função que ao ser executada no terminal ler um valor N e imprimir todos os valores inteiros entre 1 (inclusive) e N (inclusive). Considere que o N será sempre maior que ZERO.
 function exer12(){
 
     var num1 = 1;
@@ -191,6 +226,7 @@ if(num2 < num1){
 }
 }
 
+//Exercício 13 - Função que ao ser executada no terminal que modifique o  exercício anterior para aceitar somente  valores maiores  que 0 para N. Caso o valor informado (para N) não seja maior que 0, deverá ser lido um novo valor para N.
 function exer13(){
 
     var num1 = 1;
@@ -208,6 +244,7 @@ function exer13(){
     }
 }
 
+//Exercício 14 - Função que ao ser executada no terminal leia 10 valores e escrever quantos desses valores lidos são NEGATIVOS.
 function exer14(){
 
     var num1 = 1;
@@ -236,6 +273,7 @@ function exer14(){
     
 }
 
+//Exercício 15 - Função que ao ser executada no terminal que leia um número inteiro e imprima o seu antecessor e seu sucessor.
 function exer15(){
 
     var num1 = parseInt(prompt(`Por favor, apenas digite valores acima de zero`));
