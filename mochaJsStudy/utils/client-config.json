@@ -1,0 +1,16 @@
+{
+    "qa": {
+        "internal": {
+            "token": "67b5a73a23a0e8b2ce537b9d1d234b0d"
+        },
+        "homolog": {
+            "token": "67b5a73a23a0e8b2ce537b9d1d234b0d"
+        },
+        "staging": {
+            "token": "67b5a73a23a0e8b2ce537b9d1d234b0d"
+        },
+        "production": {
+            "token": "67b5a73a23a0e8b2ce537b9d1d234b0d"
+        }
+    }
+}

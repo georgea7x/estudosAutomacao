@@ -1,0 +1,7 @@
+{
+    "channels": {
+        "createChannel": "/clients/qa/channels",
+        "updateChannel": "/clients/qa/channels/",
+        "getChannel": "/clients/qa/channels/"
+    }
+}
