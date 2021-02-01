@@ -1,5 +1,5 @@
-var chai = require("chai")
-var chaiHttp = require("chai-http")
+const chai = require("chai")
+//var chaiHttp = require("chai-http")
 const clientFile = require("../utils/client-config.json")
 const environmentFile = require("../utils/environment-config.json")
 const endpointFile = require("../utils/url.json")
@@ -8,7 +8,7 @@ const clientId = process.env.CLIENT;
 const appName = process.env.APP_NAME;
 const environment = process.env.ENV;
 
-const urlBase = environmentFile[appName][environment];
+//const urlBase = environmentFile[appName][environment];
 const token = clientFile[clientId][environment]
 const createChannel = endpointFile['channels']['createChannel']
 const updateChannel = endpointFile['channels']['updateChannel']
@@ -16,14 +16,19 @@ const getChannel = endpointFile['channels']['getChannel']
 
 const assert = chai.assert
 
-chai.use(chaiHttp)
-const request = chai.request(urlBase)
+//chai.use(chaiHttp)
+//const request = chai.request(urlBase)
+
+const supertest = require("supertest");
+
+const request = supertest.agent(environmentFile[appName][environment]);
 
 describe('Exercicios de backEnd', () => {
 
-    let repetido
+    let repetido;
 
-    it("Exercício 1", (done) => {
+    it("Exercício 1", async () => {
+
         let bodyRequest =
         {
             "clientId": clientId,
@@ -36,18 +41,15 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-
-        request.post(createChannel)
+        await request.post(createChannel)
             .auth(clientId, token)
             .send(bodyRequest)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 400)
-                    assert.equal(res.status, "One or more fields are invalid")
-                    assert.equal(res.errors, "thresholdType must be in { \"INCREMENTAL\", \"PRIORITY\" }")
-                    done()
+                assert.equal(res.status, "One or more fields are invalid")
+                assert.equal(res.errors, "thresholdType must be in { \"INCREMENTAL\", \"PRIORITY\" }")
             })
-
-    })
+    });
 
     it("Exercício 2", () => {
 
@@ -62,19 +64,18 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-
         request.post(createChannel)
             .auth(clientId, token)
             .send(bodyRequest)
             .end((err, res) => {
                 assert.equal(res.status, 400)
-                    assert.equal(res.message, "One or more fields are invalid")
-                    assert.equal(res.errors, "Must have keys { \"clientId\", \"channelId\", \"stockThreshold\", \"thresholdType\", \"stockTypes\" }")
+                assert.equal(res.message, "One or more fields are invalid")
+                assert.equal(res.errors, "Must have keys { \"clientId\", \"channelId\", \"stockThreshold\", \"thresholdType\", \"stockTypes\" }")
             })
-
-    })
+    });
 
     it("Exercício 3", () => {
+
         let bodyRequest =
         {
             "clientId": clientId,
@@ -87,7 +88,6 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-
         repetido = bodyRequest
 
         request.post(createChannel)
@@ -97,8 +97,7 @@ describe('Exercicios de backEnd', () => {
                 assert.equal(res.status, 200)
             })
 
-    })
-
+    });
 
     it("Exercício 4", () => {
 
@@ -109,28 +108,28 @@ describe('Exercicios de backEnd', () => {
             .send(bodyRequest)
             .end((err, res) => {
                 assert.equal(res.status, 409)
-                    assert.equal(res.error, "Channel already exists")
+                assert.equal(res.error, "Channel already exists")
             })
-
-    })
+    });
 
     it("Exercício 5", () => {
- let perpage = 5
+
+        let perpage = 5
+
         request.get(createChannel + "/perpage=" + perpage)
             .auth(clientId, token)
             .end((err, res) => {
                 assert.equal(res.status, 200)
-                    assert.equal(res.header.X-Paginate-Page-Size, perpage)
+                assert.equal(res.header.X - Paginate - Page - Size, perpage)
             })
 
-            request.get(getChannel + repetido.clientId)
+        request.get(getChannel + repetido.clientId)
             .auth(clientId, token)
             .end((err, res) => {
                 assert.equal(res.status, 200)
-                    assert.equal(res.clientId, repetido.clientId)
+                assert.equal(res.clientId, repetido.clientId)
             })
-        
-    })
+    });
 
     it("Exercício 6", () => {
 
@@ -138,10 +137,9 @@ describe('Exercicios de backEnd', () => {
             .auth(clientId, token)
             .end((err, res) => {
                 assert.equal(res.status, 404)
-                    assert.equal(res.error, "Channel not found with clientId '" + clientId + "' and channelId '0'")
+                assert.equal(res.error, "Channel not found with clientId '" + clientId + "' and channelId '0'")
             })
-
-    })
+    });
 
     it("Exercício 7", () => {
 
@@ -149,16 +147,13 @@ describe('Exercicios de backEnd', () => {
             .auth(clientId, token)
             .end((err, res) => {
                 assert.equal(res.status, 200)
-                    assert.equal(res.clientId, repetido.clientId)
-                    assert.equal(res.channelId, repetido.channelId)
-                    assert.equal(res.stockThreshold, repetido.stockThreshold)
-                    assert.equal(res.thresholdType, repetido.thresholdType)
-                    assert.equal(res.stockTypes, repetido.stockTypes)
-
-
+                assert.equal(res.clientId, repetido.clientId)
+                assert.equal(res.channelId, repetido.channelId)
+                assert.equal(res.stockThreshold, repetido.stockThreshold)
+                assert.equal(res.thresholdType, repetido.thresholdType)
+                assert.equal(res.stockTypes, repetido.stockTypes)
             })
-
-    })
+    });
 
     it("Exercício 8", () => {
 
@@ -174,16 +169,14 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-
         request.put(updateChannel + "s0")
             .auth(clientId, token)
             .send(bodyRequest)
             .end((err, res) => {
                 assert.equal(res.status, 404)
-                    assert.equal(res.error, "Channel not found with clientId 'qa' and channelId 's0'")
+                assert.equal(res.error, "Channel not found with clientId 'qa' and channelId 's0'")
             })
-
-    })
+    });
 
     it("Exercício 9", () => {
 
@@ -199,17 +192,15 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-
         request.put(updateChannel + repetido.channelId)
             .auth(clientId, token)
             .send(bodyRequest)
             .end((err, res) => {
                 assert.equal(res.status, 400)
-                    assert.equal(res.message, "One or more fields are invalid")
-                    assert.equal(res.error, "thresholdType must be in { \"INCREMENTAL\", \"PRIORITY\" }")
+                assert.equal(res.message, "One or more fields are invalid")
+                assert.equal(res.error, "thresholdType must be in { \"INCREMENTAL\", \"PRIORITY\" }")
             })
-
-    })
+    });
 
     it("Exercício 10", () => {
 
@@ -224,19 +215,18 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-
         request.put(updateChannel + repetido.channelId)
             .auth(clientId, token)
             .send(bodyRequest)
             .end((err, res) => {
                 assert.equal(res.status, 400)
-                    assert.equal(res.message, "One or more fields are invalid")
-                    assert.equal(res.errors, "Must have keys { \"clientId\", \"channelId\", \"stockThreshold\", \"thresholdType\", \"stockTypes\" }")
+                assert.equal(res.message, "One or more fields are invalid")
+                assert.equal(res.errors, "Must have keys { \"clientId\", \"channelId\", \"stockThreshold\", \"thresholdType\", \"stockTypes\" }")
             })
-
-    })
+    });
 
     it("Exercício 11", () => {
+
         repetido.thresholdType = "PRIORITY"
 
         request.put(updateChannel + repetido.channelId)
@@ -245,8 +235,7 @@ describe('Exercicios de backEnd', () => {
             .end((err, res) => {
                 assert.equal(res.status, 200)
             })
-
-    })
+    });
 
     it("Exercício 12", () => {
 
@@ -254,13 +243,11 @@ describe('Exercicios de backEnd', () => {
             .auth(clientId, token)
             .end((err, res) => {
                 assert.equal(res.status, 200)
-                    assert.equal(res.clientId, repetido.clientId)
-                    assert.equal(res.channelId, repetido.channelId)
-                    assert.equal(res.stockThreshold, repetido.stockThreshold)
-                    assert.equal(res.thresholdType, repetido.thresholdType)
-                    assert.equal(res.stockTypes, repetido.stockTypes)
+                assert.equal(res.clientId, repetido.clientId)
+                assert.equal(res.channelId, repetido.channelId)
+                assert.equal(res.stockThreshold, repetido.stockThreshold)
+                assert.equal(res.thresholdType, repetido.thresholdType)
+                assert.equal(res.stockTypes, repetido.stockTypes)
             })
-
-    })
-
+    });
 })

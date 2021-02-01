@@ -1,0 +1,9 @@
+# Dependency directory
+node_modules
+mochawesome-report
+.npm
+npm-debug.log
+package-lock
+debug.log
+.vscode
+package-lock.json
