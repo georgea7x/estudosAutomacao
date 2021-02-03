@@ -1,8 +1,8 @@
 {
     "inventoryV2": {
-        "internal": "http://int-inventory.omniplat.internal/v2",
-        "homolog": "http://homolog-inventory.omniplat.internal/v2",
-        "staging": "http://staging-inventory.omniplat.internal/v2",
-        "production": "http://production-inventory.omniplat.internal/v2"
+        "internal": "http://int-inventory.omniplat.internal/v2/clients/",
+        "homolog": "http://homolog-inventory.omniplat.internal/v2/clients/",
+        "staging": "http://staging-inventory.omniplat.internal/v2/clients/",
+        "production": "http://production-inventory.omniplat.internal/v2/clients/"
     }
 }

@@ -1,27 +1,21 @@
 const chai = require("chai")
-//var chaiHttp = require("chai-http")
 const clientFile = require("../utils/client-config.json")
 const environmentFile = require("../utils/environment-config.json")
 const endpointFile = require("../utils/url.json")
+const supertest = require("supertest")
 
-const clientId = process.env.CLIENT;
-const appName = process.env.APP_NAME;
-const environment = process.env.ENV;
+const clientId = process.env.CLIENT
+const appName = process.env.APP_NAME
+const environment = process.env.ENV
 
-//const urlBase = environmentFile[appName][environment];
-const token = clientFile[clientId][environment]
+const token = clientFile[clientId][environment]['token']
 const createChannel = endpointFile['channels']['createChannel']
 const updateChannel = endpointFile['channels']['updateChannel']
 const getChannel = endpointFile['channels']['getChannel']
 
 const assert = chai.assert
 
-//chai.use(chaiHttp)
-//const request = chai.request(urlBase)
-
-const supertest = require("supertest");
-
-const request = supertest.agent(environmentFile[appName][environment]);
+const request = supertest.agent(environmentFile[appName][environment] + clientId)
 
 describe('Exercicios de backEnd', () => {
 
@@ -46,12 +40,12 @@ describe('Exercicios de backEnd', () => {
             .send(bodyRequest)
             .expect(res => {
                 assert.equal(res.status, 400)
-                assert.equal(res.status, "One or more fields are invalid")
-                assert.equal(res.errors, "thresholdType must be in { \"INCREMENTAL\", \"PRIORITY\" }")
+                assert.equal(res.body.message, "One or more fields are invalid")
+                assert.equal(res.body.errors, "thresholdType must be in { \"INCREMENTAL\", \"PRIORITY\" }")
             })
-    });
+    })
 
-    it("Exercício 2", () => {
+    it("Exercício 2", async () => {
 
         let bodyRequest =
         {
@@ -64,24 +58,26 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-        request.post(createChannel)
+
+        await request.post(createChannel)
             .auth(clientId, token)
             .send(bodyRequest)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 400)
-                assert.equal(res.message, "One or more fields are invalid")
-                assert.equal(res.errors, "Must have keys { \"clientId\", \"channelId\", \"stockThreshold\", \"thresholdType\", \"stockTypes\" }")
+                assert.equal(res.body.message, "One or more fields are invalid")
+                assert.equal(res.body.errors, "Must have keys { \"clientId\", \"channelId\", \"stockThreshold\", \"thresholdType\", \"stockTypes\" }")
             })
-    });
 
-    it("Exercício 3", () => {
+    })
+
+    it("Exercício 3", async () => {
 
         let bodyRequest =
         {
             "clientId": clientId,
             "channelId": "gap" + Math.random() * 9999999 + 1111111,
             "stockThreshold": 3,
-            "thresholdType": "FERMENTAL",
+            "thresholdType": "INCREMENTAL",
             "stockTypes": [
                 "PHYSICAL",
                 "PRESALE"
@@ -90,72 +86,72 @@ describe('Exercicios de backEnd', () => {
 
         repetido = bodyRequest
 
-        request.post(createChannel)
+        await request.post(createChannel)
             .auth(clientId, token)
             .send(bodyRequest)
-            .end((err, res) => {
-                assert.equal(res.status, 200)
+            .expect(res => {
+                assert.equal(res.status, 201)
             })
 
-    });
+    })
 
-    it("Exercício 4", () => {
+    it("Exercício 4", async () => {
 
         let bodyRequest = repetido
 
-        request.post(createChannel)
+        await request.post(createChannel)
             .auth(clientId, token)
             .send(bodyRequest)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 409)
-                assert.equal(res.error, "Channel already exists")
+                assert.equal(res.body.error, "Channel already exists")
             })
-    });
 
-    it("Exercício 5", () => {
+    })
 
-        let perpage = 5
+    it("Exercício 5", async () => {
 
-        request.get(createChannel + "/perpage=" + perpage)
+        let perpage = '5'
+        let firstChannelId = "0.10525908730315314"
+
+        await request.get(createChannel + "?perpage=" + perpage)
             .auth(clientId, token)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 200)
-                assert.equal(res.header.X - Paginate - Page - Size, perpage)
+                assert.equal(res.body[0].channelId, firstChannelId)
+                assert.include(res.headers, { "x-paginate-page-size": perpage })
+
             })
+    })
 
-        request.get(getChannel + repetido.clientId)
+    it("Exercício 6", async () => {
+
+        await request.get(getChannel + "0")
             .auth(clientId, token)
-            .end((err, res) => {
-                assert.equal(res.status, 200)
-                assert.equal(res.clientId, repetido.clientId)
-            })
-    });
-
-    it("Exercício 6", () => {
-
-        request.get(getChannel)
-            .auth(clientId, token)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 404)
-                assert.equal(res.error, "Channel not found with clientId '" + clientId + "' and channelId '0'")
+                assert.equal(res.body.error, "Channel not found with clientId '" + clientId + "' and channelId '0'")
             })
-    });
 
-    it("Exercício 7", () => {
+    })
 
-        request.get(getChannel + repetido.channelId)
+    it("Exercício 7", async () => {
+
+        await request.get(getChannel + repetido.channelId)
             .auth(clientId, token)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 200)
-                assert.equal(res.clientId, repetido.clientId)
-                assert.equal(res.channelId, repetido.channelId)
-                assert.equal(res.stockThreshold, repetido.stockThreshold)
-                assert.equal(res.thresholdType, repetido.thresholdType)
-                assert.equal(res.stockTypes, repetido.stockTypes)
+                assert.equal(res.body.clientId, repetido.clientId)
+                assert.equal(res.body.channelId, repetido.channelId)
+                assert.equal(res.body.stockThreshold, repetido.stockThreshold)
+                assert.equal(res.body.thresholdType, repetido.thresholdType)
+                assert.equal(res.body.stockTypes[0], repetido.stockTypes[0])
+                assert.equal(res.body.stockTypes[1], repetido.stockTypes[1])
             })
-    });
 
-    it("Exercício 8", () => {
+    })
+
+    it("Exercício 8", async () => {
 
         let bodyRequest =
         {
@@ -169,16 +165,18 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-        request.put(updateChannel + "s0")
+        let wrongChannelId = "s0"
+
+        await request.put(updateChannel + wrongChannelId)
             .auth(clientId, token)
             .send(bodyRequest)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 404)
-                assert.equal(res.error, "Channel not found with clientId 'qa' and channelId 's0'")
+                assert.equal(res.body.error, "Channel not found with clientId 'qa' and channelId '" + wrongChannelId + "'")
             })
-    });
+    })
 
-    it("Exercício 9", () => {
+    it("Exercício 9", async () => {
 
         let bodyRequest =
         {
@@ -192,62 +190,63 @@ describe('Exercicios de backEnd', () => {
             ]
         }
 
-        request.put(updateChannel + repetido.channelId)
+        await request.put(updateChannel + repetido.channelId)
             .auth(clientId, token)
             .send(bodyRequest)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 400)
-                assert.equal(res.message, "One or more fields are invalid")
-                assert.equal(res.error, "thresholdType must be in { \"INCREMENTAL\", \"PRIORITY\" }")
+                assert.equal(res.body.message, "One or more fields are invalid")
+                assert.equal(res.body.errors, "thresholdType must be in { \"INCREMENTAL\", \"PRIORITY\" }")
             })
-    });
+    })
 
-    it("Exercício 10", () => {
+    it("Exercício 10", async () => {
 
         let bodyRequest =
         {
             "clientId": clientId,
             "stockThreshold": 3,
-            "thresholdType": "FERMENTAL",
+            "thresholdType": "INCREMENTAL",
             "stockTypes": [
                 "PHYSICAL",
                 "PRESALE"
             ]
         }
 
-        request.put(updateChannel + repetido.channelId)
+        await request.put(updateChannel + repetido.channelId)
             .auth(clientId, token)
             .send(bodyRequest)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 400)
-                assert.equal(res.message, "One or more fields are invalid")
-                assert.equal(res.errors, "Must have keys { \"clientId\", \"channelId\", \"stockThreshold\", \"thresholdType\", \"stockTypes\" }")
+                assert.equal(res.body.message, "One or more fields are invalid")
+                assert.equal(res.body.errors, "Must have keys { \"clientId\", \"channelId\", \"stockThreshold\", \"thresholdType\", \"stockTypes\" }")
             })
-    });
+    })
 
-    it("Exercício 11", () => {
+    it("Exercício 11", async () => {
 
         repetido.thresholdType = "PRIORITY"
 
-        request.put(updateChannel + repetido.channelId)
+        await request.put(updateChannel + repetido.channelId)
             .auth(clientId, token)
             .send(repetido)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 200)
             })
-    });
+    })
 
-    it("Exercício 12", () => {
+    it("Exercício 12", async () => {
 
-        request.get(updateChannel + repetido.channelId)
+        await request.get(updateChannel + repetido.channelId)
             .auth(clientId, token)
-            .end((err, res) => {
+            .expect(res => {
                 assert.equal(res.status, 200)
-                assert.equal(res.clientId, repetido.clientId)
-                assert.equal(res.channelId, repetido.channelId)
-                assert.equal(res.stockThreshold, repetido.stockThreshold)
-                assert.equal(res.thresholdType, repetido.thresholdType)
-                assert.equal(res.stockTypes, repetido.stockTypes)
+                assert.equal(res.body.clientId, repetido.clientId)
+                assert.equal(res.body.channelId, repetido.channelId)
+                assert.equal(res.body.stockThreshold, repetido.stockThreshold)
+                assert.equal(res.body.thresholdType, repetido.thresholdType)
+                assert.equal(res.body.stockTypes[0], repetido.stockTypes[0])
+                assert.equal(res.body.stockTypes[1], repetido.stockTypes[1])
             })
-    });
+    })
 })
