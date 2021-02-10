@@ -1,5 +1,3 @@
-require('dotenv/config');
-
 
 /* Exercício 1 - função que ao ser executada no terminal mostre a frase : 
 "Hello World"*/

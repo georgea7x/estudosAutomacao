@@ -1,0 +1,36 @@
+{
+  "name": "protractorstudy",
+  "version": "1.0.0",
+  "description": "Exercicios Front ",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npx standard",
+    "lint:fix": "npx standard --fix",
+    "pretest":"webdriver-manager update",
+    "test": "npm run test:chrome",
+    "test:chrome":"protractor configurations/chromeConfig.js"
+  },
+  "standard": {
+    "globals":[
+      "assert",
+      "afterAll",
+      "browser",
+      "beforeAll",
+      "beforeEach",
+      "by",
+      "describe",
+      "element",
+      "expect",
+      "it"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "protractor": "^7.0.0",
+    "protractor-helper": "^4.2.0",
+    "standardjs": "^1.0.0-alpha"
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "homolog": {
+        "url": "https://oms-homolog.chaordic.com.br/deliveries/all",
+        "login": "cirtotapse@nedoz.com",
+        "password": "Teste@123"        
+    },
+    "staging": {
+        "url": "https://oms-cockpit-staging.chaordicsystems.com/deliveries/all",
+        "login": "http://homolog-inventory.omniplat.internal/v2/clients/",
+        "password": "http://staging-inventory.omniplat.internal/v2/clients/"        
+    },
+    "production": {
+        "url": "http://int-inventory.omniplat.internal/v2/clients/",
+        "login": "http://homolog-inventory.omniplat.internal/v2/clients/",
+        "password": "http://staging-inventory.omniplat.internal/v2/clients/"        
+    }
+}

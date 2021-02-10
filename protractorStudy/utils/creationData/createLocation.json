@@ -1,0 +1,20 @@
+{
+        "marca": 2,
+        "regional": 2,
+        "tipo": 2,
+        "cep": "01010000",
+        "endereco": "Avenida Javari",
+        "numero": "5566",
+        "complemento": "Loja 10",
+        "bairro": "Centro",
+        "estado": "Sao Paulo",
+        "pais": "Brasil",
+        "telDDI": "55",
+        "tel": "11987654321",
+        "latitude": "2",
+        "longitude": "2",
+        "prazoManuseio": "1",
+        "taxaManuseio": "10",
+        "typeLocation": 2
+     
+    }
