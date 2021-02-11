@@ -4,29 +4,35 @@ const helper = require('protractor-helper')
 let stringss
 
 class Actions {
-  constructor () {
+  constructor() {
   }
 
-  getAtribute(campo, atributo){
+  getAtribute(campo, atributo) {
 
     return campo.getAttribute(atributo)
 
   }
 
-  getURL (url, campo) {
+  clears(campo) {
+
+    campo.clear()
+
+  }
+
+  getURL(url, campo) {
     browser.get(url)
     helper.waitForElementVisibility(campo)
   }
 
-  keysSend (campo, conteudo) {
+  keysSend(campo, conteudo) {
     campo.sendKeys(conteudo)
   }
 
-  waitElementVisibility (campo) {
+  waitElementVisibility(campo) {
     helper.waitForElementVisibility(campo)
   }
 
-  getEnabled (campo) {
+  getEnabled(campo) {
     campo.isEnabled()
   }
 
@@ -34,26 +40,26 @@ class Actions {
     campo.click()
   }
 
-  getTitle (campo) {
-    return campo.getTitle()
+  async getTitle(campo) {
+    return await campo.getTitle()
   }
 
-  getTexts (campo) {
+  getTexts(campo) {
     return campo.getText()
   }
 
-  selectOption(campo, subcampo){
+  selectOption(campo, subcampo) {
     this.clicks(campo)
     helper.waitForElementVisibility(subcampo)
     this.clicks(subcampo)
   }
 
-  clickMenu (clicks, campo) {
+  clickMenu(clicks, campo) {
     this.clicks(clicks)
     helper.waitForElementVisibility(campo)
   }
 
-  selectDado (campo, dado) {
+  selectDado(campo, dado) {
     if (dado != '') {
       clicks(campo)
     }

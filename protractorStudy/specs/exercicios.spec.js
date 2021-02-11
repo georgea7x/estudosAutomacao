@@ -20,26 +20,14 @@ describe('Exercicios Front-end', () => {
     login.logar()
   })
 
-  /*beforeEach(() => {
-    home.selectClient()
-  })*/
+  it('Exercicio 1', async () => {
 
-  afterAll(() => {
-
-    commons.killDriver()
-
-  })
-
-  it('Exercicio 1', () => {
-
-    //acessando o a tela de cadastro de filiais
-    filiais.menuAcess()
 
     //validar tooltip
+    filiais.menuAcess()
+    await assert.equal(filiais.getTooltip().getText(), 'Lista de lojas ou CDs cadastrados no OMS como filiais, ou seja, centros de processamento de pedido com a possibilidade de Ship from Store e/ou Pickup in Store e/ou Ship to Store configuradas.')
 
-    console.log(filiais.getTextTooltip())
-
-  })
+  })/*
 
   it('Exercicio 2', () => {
 
@@ -50,26 +38,25 @@ describe('Exercicios Front-end', () => {
 
   })
 
-  it('Exercicio 3', async () => {
+  it('Exercicio 3', () => {
 
     filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('nomeFantasia')
-    await console.log(addFiliais.getTextAlert())
-    //assert.strictEqual(addFiliais.getTextAlert(), "Informe o Nome fantasia")
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe o Nome fantasia")
 
   })
 
   it('Exercicio 4', () => {
 
-filiais.menuAcess()
+    filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('bairro')
-    assert.strictEqual(addFiliais.getTextAlert(), "Informe o Bairro")
-    
-
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe o Bairro")
 
   })
 
@@ -79,7 +66,8 @@ filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('estado')
-    assert.strictEqual(addFiliais.getTextAlert(), "Informe o Estado")
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe o Estado")
 
   })
 
@@ -89,74 +77,80 @@ filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('id')
-    assert.strictEqual(addFiliais.getTextAlert(), "Informe o ID")
-
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe o ID")
 
   })
 
   it('Exercicio 7', () => {
 
-filiais.menuAcess()
+    filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('cnpj')
-    assert.strictEqual(addFiliais.getTextAlert(), "Informe o CNPJ")
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe o CNPJ")
 
   })
 
   it('Exercicio 8', () => {
 
-filiais.menuAcess()
+    filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('razaoSocial')
-    assert.strictEqual(addFiliais.getTextAlert(), "Informe a Razão social")
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe a Razão social")
 
   })
 
   it('Exercicio 9', () => {
 
-filiais.menuAcess()
+    filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('cep')
-    assert.strictEqual(addFiliais.getTextAlert(), "Informe o CEP")
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe o CEP")
 
   })
 
   it('Exercicio 10', () => {
 
-filiais.menuAcess()
+    filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('endereco')
-    assert.strictEqual(addFiliais.getTextAlert(), "Informe o Endereço")
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe o Endereço")
 
   })
 
   it('Exercicio 11', () => {
 
-filiais.menuAcess()
+    filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('numero')
-    assert.strictEqual(addFiliais.getTextAlert(), "Informe o Número")
+    addFiliais.closeAlertBox()
+    assert.equal(addFiliais.getTextAlert(), "Informe o Número")
 
   })
 
   it('Exercicio 12', () => {
 
-let dados = {
-  
-  locationName = Faker.Company.companyName(),
-  cnpj = "66208590000150",
-  id = 
+    let dados = {
 
-}
+      locationName: Faker.Company.companyName(),
+      cnpj: "66208590000150",
+      id: "gap" + Faker.random.number(6)
 
-repetido = dados
+    }
+
+    repetido = dados
 
     //acessando o a tela de cadastro de filiais
+
     filiais.menuAcess()
     filiais.adicionarFilial()
 
@@ -167,13 +161,14 @@ repetido = dados
 
   it('Exercicio 13', () => {
 
- 
+
     //acessando o a tela de cadastro de filiais
     filiais.menuAcess()
     filiais.adicionarFilial()
 
     addFiliais.createLocation(repetido.locationName, repetido.cnpj, repetido.id)
-    assert.strictEqual(addFiliais.getTextAlert(), 'ID já existente')
+    addFiliais.getTextAlert()
+    assert.equal(addFiliais.getTextAlert(), 'O ID informado já foi cadastrado.')
 
   })
 
@@ -181,7 +176,7 @@ repetido = dados
 
     filiais.menuAcess()
     filiais.consultLocation(repetido.id, repetido.locationName + '@')
-    assert.strictEqual(filiais.getResultEmpty(), 'Não encontramos nenhum registro.')
+    assert.equal(filiais.getResultEmpty(), 'Não encontramos nenhum registro.')
 
   })
 
@@ -189,7 +184,7 @@ repetido = dados
 
     filiais.menuAcess()
     filiais.consultLocationByName(repetido.locationName.substring(0, repetido.locationName.length - 3))
-    assert.strictEqual(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
+    assert.equal(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
 
   })
 
@@ -197,7 +192,7 @@ repetido = dados
 
     filiais.menuAcess()
     filiais.consultLocationByName(repetido.locationName)
-    assert.strictEqual(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
+    assert.equal(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
 
   })
 
@@ -205,9 +200,9 @@ repetido = dados
 
     filiais.menuAcess()
     filiais.consultLocationById(repetido.id)
-    assert.strictEqual(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
+    assert.equal(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
 
   })
 
-  
+*/
 })

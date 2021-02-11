@@ -35,7 +35,7 @@ const latitude = element(by.xpath('//*/input[@name="latitude"]'))
 const longitude = element(by.xpath('//*/input[@name="longitude"]'))
 const prazoManuseio = element(by.xpath('//*/input[@name="handlingTax"]/../../../div/div//input[@name="handlingTime"]'))
 const taxaManuseio = element(by.xpath('//*/input[@name="handlingTax"]'))
-const typeLocation = element(by.xpath('//*[@id="react-tabs-1"]/div/div[2]/div[1]/form/div[10]/div/div/div/label[2]'))
+const typeLocation = element(by.xpath('//*/input[@name="canShipToCustomer"]/../../label'))
 const costCenter = element(by.xpath("//*/input[@name='costCenter']"))
 const checkAccount = element(by.xpath("//*/input[@name='checkAccount']"))
 const businessCode = element(by.xpath("//*/input[@name='businessCode']"))
@@ -44,7 +44,6 @@ const habilitVale = element(by.xpath('//*/label[@for="toggleallowVoucher"]'))
 const confirmCreate = element(by.xpath('//*/div[@class="Toastify__toast Toastify__toast--success toast toast-success"]'))
 const alertText = element(by.xpath('//*/div[@class="modal-body"]/div'))
 const alertButton = element(by.xpath('//div[@class="modal-footer"]/button'))
-const fieldEmptyColor = element(by.xpath('//*/div[@class="form-group has-error"]'))
 
 
 const action = new Actions()
@@ -128,6 +127,8 @@ class Filiais {
 
     let arquivo = CreateLocationFile
 
+    let remember = arquivo[campo]
+
     arquivo[campo] = ''
 
     action.keysSend(nomeFantasia, arquivo['nomeFantasia'])
@@ -158,29 +159,35 @@ class Filiais {
 
     action.clicks(typeLocation)
 
-    action.waitElementVisibility(fieldEmptyColor)
-
     action.clicks(salvar)
+
+    arquivo[campo] = remember
 
   }
 
   confirmCreateLocation() {
 
     action.waitElementVisibility(confirmCreate)
+    action.clicks(confirmCreate)
     action.waitElementVisibility(consultID)
-
+    
   }
 
-  getTextAlert() {
+  async getTextAlert() {
 
     action.waitElementVisibility(alertText)
-    let text = action.getTexts(alertText)
+     let text = await alertText.getText()
     action.clicks(alertButton)
     return text
 
   }
 
+  closeAlertBox() {
 
+    action.waitElementVisibility(alertText)
+    action.clicks(alertButton)
+
+  }
 
 
 }
