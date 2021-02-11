@@ -7,6 +7,12 @@ class Actions {
   constructor () {
   }
 
+  getAtribute(campo, atributo){
+
+    return campo.getAttribute(atributo)
+
+  }
+
   getURL (url, campo) {
     browser.get(url)
     helper.waitForElementVisibility(campo)
@@ -17,7 +23,7 @@ class Actions {
   }
 
   waitElementVisibility (campo) {
-    helper.waitForElementVisibility(campo).then(60000)
+    helper.waitForElementVisibility(campo)
   }
 
   getEnabled (campo) {
@@ -32,7 +38,7 @@ class Actions {
     return campo.getTitle()
   }
 
-  getText (campo) {
+  getTexts (campo) {
     return campo.getText()
   }
 

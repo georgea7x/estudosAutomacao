@@ -6,12 +6,12 @@
   "scripts": {
     "lint": "npx standard",
     "lint:fix": "npx standard --fix",
-    "pretest":"webdriver-manager update",
+    "pretest": "webdriver-manager update",
     "test": "npm run test:chrome",
-    "test:chrome":"protractor configurations/chromeConfig.js"
+    "test:chrome": "protractor configurations/chromeConfig.js"
   },
   "standard": {
-    "globals":[
+    "globals": [
       "assert",
       "afterAll",
       "browser",
@@ -27,7 +27,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "Faker": "^0.7.2"
+  },
   "devDependencies": {
     "protractor": "^7.0.0",
     "protractor-helper": "^4.2.0",
