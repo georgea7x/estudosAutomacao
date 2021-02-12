@@ -6,34 +6,38 @@ const Actions = require('../components/actions.js')
 const action = new Actions()
 
 const filiais = element(by.xpath('//*/a[text()="Filiais"]'))
-    const listFiliais = element(by.xpath('//*/a[text()="Cadastro de filiais"]'))
-    const ttipFiliais = element(by.xpath('//*/i[@class="fa fa-info-circle tooltip-icon"]'))
-    const priorizacaoFilials = element(by.xpath('//*/a[text()="Priorização de filiais"]'))
-    const getFilialName = element(by.xpath('//*/div/input[@name="tradingName"]'))
-    const getFilialId = element(by.xpath('//*/div/input[@name="id"]'))
-    const lupaFilialId = element(by.xpath('//*/input[@name="id"]/../button'))
-    const resultId = element(by.xpath('//*/tbody/tr[1]/td[1]'))
-    const nameLocationId = element(by.xpath('//*/tbody/tr[1]/td[2]'))
-    const addFilial = element(by.xpath('//*/a[@href="/locations/new"]'))
-    const emptyTable = element(by.xpath('//*/div[@class="empty-table"]/p'))
-    const returnFilial = element(by.xpath('//*/a[@class="back-button"]'))
-    const buttonSalvar = element(by.xpath('//*/div/button/span[text()="Salvar"]'))
+const listFiliais = element(by.xpath('//*/a[text()="Cadastro de filiais"]'))
+const ttipFiliais = element(by.xpath('//*/i[@class="fa fa-info-circle tooltip-icon"]'))
+const priorizacaoFilials = element(by.xpath('//*/a[text()="Priorização de filiais"]'))
+const getFilialName = element(by.xpath('//*/div/input[@name="tradingName"]'))
+const getFilialId = element(by.xpath('//*/div/input[@name="id"]'))
+const lupaFilialId = element(by.xpath('//*/input[@name="id"]/../button'))
+const resultId = element(by.xpath('//*/tbody/tr[1]/td[1]'))
+const nameLocationId = element(by.xpath('//*/tbody/tr[1]/td[2]'))
+const addFilial = element(by.xpath('//*/a[@href="/locations/new"]'))
+const emptyTable = element(by.xpath('//*/div[@class="empty-table"]/p'))
+const returnFilial = element(by.xpath('//*/a[@class="back-button"]'))
+const buttonSalvar = element(by.xpath('//*/div/button/span[text()="Salvar"]'))
 
 
 class Filiais {
   constructor() {
 
-    
+
+  }
+
+   getTooltip() {
+
+    ttipFiliais.click()
+    let text = ttipFiliais.getAttribute('data-tip')
+
+      return text
+
   }
 
   menuAcess() {
     action.clicks(filiais)
     action.waitElementVisibility(getFilialId)
-  }
-
-  getTooltip() {
-    
-    return  ttipFiliais
   }
 
   adicionarFilial() {

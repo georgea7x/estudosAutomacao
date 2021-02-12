@@ -1,0 +1,23 @@
+{
+  "name": "instore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "Faker": "^0.7.2",
+    "chai": "^4.3.0",
+    "expect": "^26.6.2",
+    "express": "^4.17.1",
+    "protractor": "^7.0.0",
+    "protractor-helper": "^4.2.0",
+    "request": "^2.88.2",
+    "standard": "^16.0.3",
+    "supertest": "^6.1.3"
+  }
+}

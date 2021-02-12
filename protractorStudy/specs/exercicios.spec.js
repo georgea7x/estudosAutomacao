@@ -25,7 +25,9 @@ describe('Exercicios Front-end', () => {
 
     //validar tooltip
     filiais.menuAcess()
-    await assert.equal(filiais.getTooltip().getText(), 'Lista de lojas ou CDs cadastrados no OMS como filiais, ou seja, centros de processamento de pedido com a possibilidade de Ship from Store e/ou Pickup in Store e/ou Ship to Store configuradas.')
+    //await assert.equal(filiais.getTooltip().getAttribute('data-tip'), 'Lista de lojas ou CDs cadastrados no OMS como filiais, ou seja, centros de processamento de pedido com a possibilidade de Ship from Store e/ou Pickup in Store e/ou Ship to Store configuradas.')
+    await console.log(filiais.getTooltip())
+
 
   })/*
 
