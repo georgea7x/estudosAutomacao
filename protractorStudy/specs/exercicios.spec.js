@@ -6,6 +6,7 @@ const Commons = require('../utils/commons')
 const Faker = require('Faker')
 const assert = require('assert')
 
+
 describe('Exercicios Front-end', () => {
   const login = new Login()
   const home = new Home()
@@ -20,16 +21,16 @@ describe('Exercicios Front-end', () => {
     login.logar()
   })
 
-  it('Exercicio 1', async () => {
+  it('Exercicio 1', () => {
 
 
     //validar tooltip
     filiais.menuAcess()
     //await assert.equal(filiais.getTooltip().getAttribute('data-tip'), 'Lista de lojas ou CDs cadastrados no OMS como filiais, ou seja, centros de processamento de pedido com a possibilidade de Ship from Store e/ou Pickup in Store e/ou Ship to Store configuradas.')
-    await console.log(filiais.getTooltip())
+    console.log(filiais.getTooltip())
 
 
-  })/*
+  })
 
   it('Exercicio 2', () => {
 
@@ -206,5 +207,5 @@ describe('Exercicios Front-end', () => {
 
   })
 
-*/
+
 })

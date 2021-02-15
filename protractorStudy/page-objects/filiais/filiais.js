@@ -28,10 +28,9 @@ class Filiais {
 
    getTooltip() {
 
+    action.waitElementVisibility(ttipFiliais)
     ttipFiliais.click()
-    let text = ttipFiliais.getAttribute('data-tip')
-
-      return text
+    return ttipFiliais.getAttribute('data-tip')
 
   }
 
