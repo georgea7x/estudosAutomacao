@@ -1,0 +1,290 @@
+{
+    "billingAddress": {
+        "zip": "05427010",
+        "city": "Sao Paulo",
+        "state": "SP",
+        "number": "110",
+        "status": "ACTIVE",
+        "country": "BR",
+        "address1": "Rua Fernao Dias",
+        "address2": "casa",
+        "lastName": "Ramalho",
+        "firstName": "EmesoN",
+        "telephone": {
+            "type": "billing",
+            "number": "5199999999",
+            "countryCode": "+55"
+        },
+        "description": "Emerson Ramalho",
+        "neighbourhood": "Centro"
+    },
+    "channelId": "site",
+    "clientId": "qa",
+    "customer": {
+        "id": "8852491304964",
+        "type": "INDIVIDUAL",
+        "email": "no-oms-automated@linx.com.br",
+        "gender": "M",
+        "fullName": "emerson ramalho",
+        "lastName": "Ramalho",
+        "addresses": {
+            "billing": {
+                "zip": "01414001",
+                "city": "SAO PAULO",
+                "state": "SP",
+                "number": "1079",
+                "country": "BR",
+                "address1": "HADDOCK LOBO",
+                "address2": "COMPLEMENTO 1",
+                "lastName": "QA",
+                "firstName": "Automated Test",
+                "telephone": {
+                    "type": "TELEFONE",
+                    "number": "1170707070",
+                    "countryCode": "+55"
+                },
+                "description": "REFERENCIAL 1",
+                "neighbourhood": "CERQUEIRA CESAR"
+            }
+        },
+        "birthdate": "1992-01-06T00:00:00.000Z",
+        "documents": [
+            {
+                "type": "CPF",
+                "number": "96767812072"
+            },
+            {
+                "type": "RG",
+                "number": "123456123"
+            }
+        ],
+        "firstName": "Emerson",
+        "telephones": [
+            {
+                "type": "CELULAR",
+                "number": "51991010948"
+            }
+        ],
+        "socialNumber": "96767812072"
+    },
+    "discount": 0,
+    "id": "0017A7CC4583845D39",
+    "items": [
+        {
+            "sku": "00117761AD2848C958",
+            "url": "https://media.istockphoto.com/vectors/bermuda-shorts-vector-line-icon-vector-id950802288",
+            "gtin": "00117761AD2848C958",
+            "name": "Bermuda Nike JSY Club - Masculina 00117761AD2848C958",
+            "size": "G",
+            "brand": "Nike",
+            "color": "PRETO",
+            "gtins": {
+                "00117761AD2848C958": 0
+            },
+            "image": "https://media.istockphoto.com/vectors/bermuda-shorts-vector-line-icon-vector-id950802288",
+            "price": 100,
+            "width": 300,
+            "height": 20,
+            "length": 400,
+            "weight": 210,
+            "discount": 0,
+            "quantity": 1,
+            "basePrice": 100,
+            "categories": [
+                "VESTUARIO",
+                "Masculino",
+                "Casual"
+            ],
+            "acquisitionType": "PURCHASE"
+        }
+    ],
+    "payments": [
+        {
+            "type": "CREDIT_CARD",
+            "brand": "visa",
+            "amount": 80.74,
+            "method": "superpay",
+            "currency": "BRL",
+            "isCaptured": false,
+            "installments": 3,
+            "paymentNumber": 1,
+            "fraudCheckStatus": "WAITING",
+            "transactionNumber": "912784213"
+        }
+    ],
+    "pointOfSaleId": "001",
+    "status": "PROCESSING",
+    "total": 100,
+    "placedAt": "2021-02-09T14:00:25.000Z",
+    "createdAt": "2021-02-09T17:00:25.000Z",
+    "updatedAt": "2021-02-09T17:00:26.000Z",
+    "totals": {
+        "itemsAmount": 1000,
+        "totalAmount": 1018.69198,
+        "totalRefunds": 0,
+        "originalAmount": 1018.69198,
+        "shippingAmount": 18.69198,
+        "giftPackageAmount": 0,
+        "totalItemsRefunds": 0,
+        "priceShippingAmount": 1018.69198,
+        "totalFreightRefunds": 0,
+        "totalGiftPackageRefunds": 0
+    },
+    "comments": [],
+    "fulfillments": {
+        "F1": {
+            "id": "F1",
+            "orderId": "0017A7CC4583845D39",
+            "channelId": "site",
+            "clientId": "qa",
+            "locationId": "L1",
+            "operator": {
+                "name": "OMS_OPERATOR_AUTOMATED"
+            },
+            "ownership": "OMS",
+            "shipment": {
+                "method": "ECONOMICA",
+                "address": {
+                    "zip": "01414001",
+                    "city": "SAO PAULO",
+                    "state": "SP",
+                    "number": "1079",
+                    "country": "BR",
+                    "address1": "HADDOCK LOBO",
+                    "address2": "COMPLEMENTO 1",
+                    "lastName": "QA",
+                    "firstName": "Automated Test",
+                    "telephone": {
+                        "type": "TELEFONE",
+                        "number": "1170707070",
+                        "countryCode": "+55"
+                    },
+                    "description": "REFERENCIAL 1",
+                    "neighbourhood": "CERQUEIRA CESAR"
+                },
+                "methodId": "ECONOMICA",
+                "carrierId": "82",
+                "contractId": "ECONOMICA-TT-1",
+                "carrierName": "Pitney Bowes",
+                "shippingTime": 13,
+                "shippingPrice": 18.691980000000004,
+                "estimatedDeliveryDate": "2021-02-22T00:00:00.000Z"
+            },
+            "status": "WAITING",
+            "type": "SHIPMENT",
+            "billingDeadlineAt": "2021-02-11T17:00:28.000Z",
+            "createdAt": "2021-02-09T17:00:25.000Z",
+            "updatedAt": "2021-02-09T17:00:34.000Z",
+            "shippingAmount": 18.69,
+            "processedAt": "2021-02-09T17:00:26.000Z",
+            "enablePrePicking": false,
+            "prePickingFinished": false,
+            "locationType": "Own Store",
+            "totals": {
+                "itemsAmount": 1000,
+                "totalAmount": 1018.69198,
+                "totalRefunds": 0,
+                "originalAmount": 1018.69198,
+                "shippingAmount": 18.69198,
+                "totalItemsRefund": 0,
+                "giftPackageAmount": 0,
+                "totalFreightRefund": 0,
+                "originalItemsAmount": 1000,
+                "priceShippingAmount": 1018.69198,
+                "originalShippingAmount": 18.69198,
+                "totalGiftPackageRefund": 0,
+                "originalGiftPackageAmount": 0
+            },
+            "allowDeliveryParcial": false,
+            "items": {
+                "00117761AD2848C958": {
+                    "sku": "00117761AD2848C958",
+                    "quantity": 10,
+                    "stockType": "PHYSICAL",
+                    "orderedQuantity": 10,
+                    "returnedQuantity": 0,
+                    "canceledQuantity": 0,
+                    "itemType": "OTHER",
+                    "totals": {
+                        "price": 100,
+                        "totalAmount": 101.869198,
+                        "totalDiscount": 0,
+                        "shippingAmount": 1.869198,
+                        "priceDiscounted": 100,
+                        "absoluteDiscount": 0,
+                        "giftPackagePrice": 0,
+                        "priceShippingAmount": 101.869198,
+                        "proportionalDiscount": 0,
+                        "proportionalTotalAmount": 101.869198,
+                        "proportionalShippingAmount": 1.869198
+                    },
+                    "acquisitionType": "PURCHASE",
+                    "presale": false,
+                    "enablePicking": true
+                }
+            },
+            "presale": false,
+            "enablePicking": true,
+            "enableShipping": true,
+            "enableBilling": true,
+            "deadlineAt": "2021-02-11T17:00:28.000Z",
+            "invoices": [],
+            "volumes": [],
+            "exceptions": [],
+            "treatments": [],
+            "statusHistory": [
+                {
+                    "status": "PENDING",
+                    "processedAt": "2021-02-09T17:00:25.000Z",
+                    "timeInStatus": 1,
+                    "createdAt": "2021-02-09T17:00:25.000Z",
+                    "updatedAt": "2021-02-09T17:00:26.000Z",
+                    "locationId": "L1",
+                    "oldData": [],
+                    "state": "PENDING"
+                },
+                {
+                    "status": "WAITING",
+                    "processedAt": "2021-02-09T17:00:26.000Z",
+                    "createdAt": "2021-02-09T17:00:26.000Z",
+                    "updatedAt": "2021-02-09T17:00:34.000Z",
+                    "locationId": "L1",
+                    "oldData": {
+                        "status": "PENDING",
+                        "shipment": {
+                            "method": "ECONOMICA",
+                            "address": {
+                                "zip": "01414001",
+                                "city": "SAO PAULO",
+                                "state": "SP",
+                                "number": "1079",
+                                "country": "BR",
+                                "address1": "HADDOCK LOBO",
+                                "address2": "COMPLEMENTO 1",
+                                "lastName": "QA",
+                                "firstName": "Automated Test",
+                                "telephone": {
+                                    "type": "TELEFONE",
+                                    "number": "1170707070",
+                                    "countryCode": "+55"
+                                },
+                                "description": "REFERENCIAL 1",
+                                "neighbourhood": "CERQUEIRA CESAR"
+                            },
+                            "methodId": "ECONOMICA",
+                            "carrierId": "82",
+                            "contractId": "ECONOMICA-TT-1",
+                            "carrierName": "Pitney Bowes",
+                            "shippingTime": 13,
+                            "shippingPrice": 18.691980000000004
+                        },
+                        "processedAt": "2021-02-09 17:00:25"
+                    },
+                    "state": "WAITING"
+                }
+            ],
+            "transportationHistory": [],
+            "comments": []
+        }
+    }
+}

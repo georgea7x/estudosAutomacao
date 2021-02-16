@@ -1,0 +1,14 @@
+{
+    "qa": {
+        "homolog": {
+            "url": "https://accounts-staging.chaordic.com.br/qa/instore/sign_in",
+            "email": "09051997",
+            "senha": "Teste123"
+        },
+        "staging": {
+            "url": "",
+            "email": "",
+            "senha": ""
+        }
+    }
+}

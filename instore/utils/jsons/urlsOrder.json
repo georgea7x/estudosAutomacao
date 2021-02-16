@@ -1,0 +1,12 @@
+{
+
+    "qa": {
+
+        "homolog": {
+            "urlBase": "https://homolog.omniplat.io/v1/clients/qa/",
+            "token": "67b5a73a23a0e8b2ce537b9d1d234b0d"
+        }
+
+    }
+
+}
