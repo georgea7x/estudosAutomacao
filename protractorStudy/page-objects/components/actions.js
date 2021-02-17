@@ -32,6 +32,11 @@ class Actions {
     helper.waitForElementVisibility(campo)
   }
 
+  waitForTextToBePresentInElement(campo, text) {
+    
+    helper.waitForTextToBePresentInElement(campo, text)
+  }
+
   getEnabled(campo) {
     campo.isEnabled()
   }
