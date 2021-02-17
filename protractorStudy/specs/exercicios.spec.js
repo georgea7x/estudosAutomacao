@@ -43,13 +43,11 @@ describe('Exercicios Front-end', () => {
 
   it('Exercicio 3', () => {
 
-    filiais.menuAcess()
-    filiais.adicionarFilial()
-
-    addFiliais.createLocationFieldEmpty('nomeFantasia')
-    addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe o Nome fantasia")
-
+    filiais.menuAcess();
+    filiais.adicionarFilial();
+    addFiliais.createLocationFieldEmpty('nomeFantasia');
+    addFiliais.getValidTextRequiredFields('Informe o Nome fantasia.');
+    addFiliais.closeAlertBox();
   })
 
   it('Exercicio 4', () => {
