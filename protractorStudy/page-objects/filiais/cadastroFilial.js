@@ -182,6 +182,14 @@ class Filiais {
 
   }
 
+  getValidTextRequiredFields(text) {
+
+    const campo = alertText;//$('.modal-body');
+
+    action.waitElementVisibility(campo)
+    action.waitForTextToBePresentInElement(campo, text);
+  }
+
   closeAlertBox() {
 
     action.waitElementVisibility(alertText)
