@@ -23,13 +23,10 @@ describe('Exercicios Front-end', () => {
 
   it('Exercicio 1', () => {
 
-
     //validar tooltip
     filiais.menuAcess()
-    //await assert.equal(filiais.getTooltip().getAttribute('data-tip'), 'Lista de lojas ou CDs cadastrados no OMS como filiais, ou seja, centros de processamento de pedido com a possibilidade de Ship from Store e/ou Pickup in Store e/ou Ship to Store configuradas.')
-    console.log(filiais.getTooltip())
-
-
+    filiais.getTooltip()
+  
   })
 
   it('Exercicio 2', () => {
@@ -56,8 +53,8 @@ describe('Exercicios Front-end', () => {
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('bairro')
+    addFiliais.getValidTextRequiredFields('Informe o Bairro.');
     addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe o Bairro")
 
   })
 
@@ -67,9 +64,10 @@ describe('Exercicios Front-end', () => {
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('estado')
-    addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe o Estado")
 
+    addFiliais.getValidTextRequiredFields('Informe o Estado.');
+    addFiliais.closeAlertBox()
+   
   })
 
   it('Exercicio 6', () => {
@@ -78,8 +76,8 @@ describe('Exercicios Front-end', () => {
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('id')
+    addFiliais.getValidTextRequiredFields('Informe o ID.');
     addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe o ID")
 
   })
 
@@ -89,8 +87,8 @@ describe('Exercicios Front-end', () => {
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('cnpj')
+    addFiliais.getValidTextRequiredFields('Informe o CNPJ.');
     addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe o CNPJ")
 
   })
 
@@ -100,8 +98,8 @@ describe('Exercicios Front-end', () => {
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('razaoSocial')
+    addFiliais.getValidTextRequiredFields('Informe a Razão social.');
     addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe a Razão social")
 
   })
 
@@ -111,8 +109,8 @@ describe('Exercicios Front-end', () => {
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('cep')
+    addFiliais.getValidTextRequiredFields('Informe o CEP.');
     addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe o CEP")
 
   })
 
@@ -122,8 +120,8 @@ describe('Exercicios Front-end', () => {
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('endereco')
+    addFiliais.getValidTextRequiredFields('Informe o Endereço.');
     addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe o Endereço")
 
   })
 
@@ -133,8 +131,9 @@ describe('Exercicios Front-end', () => {
     filiais.adicionarFilial()
 
     addFiliais.createLocationFieldEmpty('numero')
+
+    addFiliais.getValidTextRequiredFields('Informe o Número.');
     addFiliais.closeAlertBox()
-    assert.equal(addFiliais.getTextAlert(), "Informe o Número")
 
   })
 
@@ -144,7 +143,7 @@ describe('Exercicios Front-end', () => {
 
       locationName: Faker.Company.companyName(),
       cnpj: "66208590000150",
-      id: "gap" + Faker.random.number(6)
+      id: "gap" + Math.floor(Math.random() * 99999999 + 11111111)
 
     }
 
@@ -169,7 +168,9 @@ describe('Exercicios Front-end', () => {
 
     addFiliais.createLocation(repetido.locationName, repetido.cnpj, repetido.id)
     addFiliais.getTextAlert()
-    assert.equal(addFiliais.getTextAlert(), 'O ID informado já foi cadastrado.')
+    addFiliais.getValidTextRequiredFields('O ID informado já foi cadastrado.')
+    addFiliais.closeAlertBox()
+    
 
   })
 
@@ -177,7 +178,7 @@ describe('Exercicios Front-end', () => {
 
     filiais.menuAcess()
     filiais.consultLocation(repetido.id, repetido.locationName + '@')
-    assert.equal(filiais.getResultEmpty(), 'Não encontramos nenhum registro.')
+    filiais.getValidTextTableEmpty('Não encontramos nenhum registro.');
 
   })
 
@@ -185,7 +186,7 @@ describe('Exercicios Front-end', () => {
 
     filiais.menuAcess()
     filiais.consultLocationByName(repetido.locationName.substring(0, repetido.locationName.length - 3))
-    assert.equal(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
+    filiais.getValidTextReturnResult(repetido.id, repetido.locationName);
 
   })
 
@@ -193,7 +194,7 @@ describe('Exercicios Front-end', () => {
 
     filiais.menuAcess()
     filiais.consultLocationByName(repetido.locationName)
-    assert.equal(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
+    filiais.getValidTextReturnResult(repetido.id, repetido.locationName);
 
   })
 
@@ -201,7 +202,7 @@ describe('Exercicios Front-end', () => {
 
     filiais.menuAcess()
     filiais.consultLocationById(repetido.id)
-    assert.equal(filiais.getResultConsult(), repetido.id + ' / ' + repetido.locationName)
+    filiais.getValidTextReturnResult(repetido.id, repetido.locationName);
 
   })
 

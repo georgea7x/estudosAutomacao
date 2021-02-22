@@ -69,6 +69,8 @@ class Actions {
       clicks(campo)
     }
   }
+
+  
 }
 
 module.exports = Actions

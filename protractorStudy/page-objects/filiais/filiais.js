@@ -5,9 +5,11 @@ const Actions = require('../components/actions.js')
 
 const action = new Actions()
 
+const textTooltip = 'Lista de lojas ou CDs cadastrados no OMS como filiais, ou seja, centros de processamento de pedido com a possibilidade de Ship from Store e/ou Pickup in Store e/ou Ship to Store configuradas.'
+
 const filiais = element(by.xpath('//*/a[text()="Filiais"]'))
 const listFiliais = element(by.xpath('//*/a[text()="Cadastro de filiais"]'))
-const ttipFiliais = element(by.xpath('//*/i[@class="fa fa-info-circle tooltip-icon"]'))
+const ttipFiliais = element(by.xpath('//*/i[@data-tip="'+ textTooltip + '"]'))
 const priorizacaoFilials = element(by.xpath('//*/a[text()="Priorização de filiais"]'))
 const getFilialName = element(by.xpath('//*/div/input[@name="tradingName"]'))
 const getFilialId = element(by.xpath('//*/div/input[@name="id"]'))
@@ -29,8 +31,6 @@ class Filiais {
    getTooltip() {
 
     action.waitElementVisibility(ttipFiliais)
-    ttipFiliais.click()
-    return ttipFiliais.getAttribute('data-tip')
 
   }
 
@@ -78,6 +78,22 @@ class Filiais {
     action.waitElementVisibility(emptyTable)
     return await emptyTable.getText()
   }
+
+  getValidTextTableEmpty(text) {
+
+    action.waitElementVisibility(emptyTable)
+    action.waitForTextToBePresentInElement(emptyTable, text)
+    
+  }
+
+  getValidTextReturnResult(ResultId, NameLocationId) {
+
+    action.waitElementVisibility(resultId)
+    action.waitForTextToBePresentInElement(resultId, ResultId)
+    action.waitForTextToBePresentInElement(nameLocationId, NameLocationId)
+
+  }
+
 
 }
 module.exports = Filiais

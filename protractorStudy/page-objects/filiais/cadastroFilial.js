@@ -42,7 +42,7 @@ const businessCode = element(by.xpath("//*/input[@name='businessCode']"))
 
 const habilitVale = element(by.xpath('//*/label[@for="toggleallowVoucher"]'))
 const confirmCreate = element(by.xpath('//*/div[@class="Toastify__toast Toastify__toast--success toast toast-success"]'))
-const alertText = element(by.xpath('//*/div[@class="modal-body"]/div'))
+const alertText = element(by.className('bootbox-body'))
 const alertButton = element(by.xpath('//div[@class="modal-footer"]/button'))
 
 
@@ -192,12 +192,12 @@ class Filiais {
 
   closeAlertBox() {
 
-    action.waitElementVisibility(alertText)
+    action.waitElementVisibility(alertButton)
     action.clicks(alertButton)
 
   }
 
-
+ 
 }
 
 module.exports = Filiais
